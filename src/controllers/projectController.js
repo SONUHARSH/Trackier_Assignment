@@ -23,11 +23,11 @@ const createProject = async (req, res, next) => {
     await project.save();
 
     res.status(201).json(
-      new ApiResponse(201, project, "Project created successfully", true)
-    );
+      new ApiResponse(201, project, "New Project created successfully", true)
+    )
+
   } catch (error) {
-    console.error('Error creating project:', error);
-    next(new ApiError(400, error.message));
+    throw new ApiError(500, null, " At create time some probleam ");
   }
 };
 
@@ -39,11 +39,10 @@ const getProjects = async (req, res, next) => {
 
     res.status(200).json(
       new ApiResponse(200, projects, "Projects fetched successfully", true)
-    );
+    )
 
   } catch (error) {
-    console.error('Error fetching projects:', error);
-    next(new ApiError(400, error.message));
+    throw new ApiError(500, null, " Project not fetched ");
   }
 };
 
@@ -61,8 +60,7 @@ const getProjectDetails = async (req, res, next) => {
     )
 
   } catch (error) {
-    console.error('Error fetching project details:', error);
-    next(new ApiError(400, error.message))
+    throw new ApiError(500, null, " Project details not fetched ");
   }
 };
 
@@ -88,9 +86,9 @@ const updateProject = async (req, res, next) => {
     res.status(200).json(
       new ApiResponse(200, project, "Project updated successfully", true)
     )
+
   } catch (error) {
-    console.error('Error updating project:', error);
-    next(new ApiError(400, error.message));
+    throw new ApiError(500, null, " Project not update ");
   }
 };
 
@@ -105,10 +103,10 @@ const deleteProject = async (req, res, next) => {
     }
     res.status(200).json(
       new ApiResponse(200, null, "Project deleted successfully", true)
-    );
+    )
+
   } catch (error) {
-    console.error('Error deleting project:', error);
-    next(new ApiError(400, error.message));
+    throw new ApiError(500, null, " Project not delete something wrong ");
   }
 };
 
