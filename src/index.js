@@ -7,6 +7,7 @@ import session from "express-session"
 
 
 
+
 dotenv.config();
 
 const app = express();
@@ -16,11 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //routes Import 
-import userRouter from './routes/userRoutes.js'
+import userRouter from "./routes/userRoutes.js";
+import projectRoutes from "./routes/projectRoutes.js"
 
 
 //routes declaration
 app.use("/api/users", userRouter);
+app.use("/api/project", projectRoutes);
 
 
 connectDB()

@@ -83,13 +83,13 @@ const Userlogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email })
     if (!user) {
       return res.status(404).json(
-        new ApiResponse(false, "User not found"));
+        new ApiResponse(false, "User not found"))
   }
 
-  const isValidPassword = await user.isPasswordCorrect(password);
+  const isValidPassword = await user.isPasswordCorrect(password)
   if (!isValidPassword) {
       return res.status(400).json(
         new ApiResponse(false, "Invalid password"));
@@ -108,7 +108,7 @@ const Userlogin = async (req, res) => {
         throw new ApiError(500, null, "Login failed");
     
   }
-}
+};
 
 
 export {
